@@ -17,12 +17,7 @@ function palindrome(str) {
   const arrayValues = newStr.split("");
   const reverseArrayValues = arrayValues.reverse();
   const reverseString = reverseArrayValues.join("");
-
-  if (newStr == reverseString) {
-    return true;
-  } else {
-    return false;
-  }
+  return newStr == reverseString;
 }
 
 console.log(palindrome("Logan"));

@@ -11,8 +11,27 @@
 // formats, such as racecar, RaceCar, and race CAR among others. We'll also
 // pass strings with special symbols, such as 2A3*3a2, 2A3 3a2, and 2_A3*3#A2.
 
-function palindrome(str) {
-  return true;
+// TO-DO STEPS
+// 1) remove all non-alphanumeric characters from original string
+// 2) convert original sting to lowercase
+// 3) reverse original string
+// 4) compare original string to newly altered string
+
+const REMOVE_NON_ALPHANUMERIC = (str) => str.replace(/[^a-z0-9]/ig, "");
+const STRING_TO_LOWERCASE =  (str) => str.toLowerCase();
+const REVERSE_STRING = (str) => {
+  let result = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    result += str[i];
+  }
+  return result;
 }
 
-palindrome("eye");
+function palindrome(str) {
+  const CLEAN_STRING = REMOVE_NON_ALPHANUMERIC(str);
+  const LOWERCASED_STRING = STRING_TO_LOWERCASE(CLEAN_STRING);
+  const STRING_REVERSED = REVERSE_STRING(LOWERCASED_STRING);
+  return LOWERCASED_STRING == STRING_REVERSED;
+}
+
+palindrome("_TAC^O*CAT_");
