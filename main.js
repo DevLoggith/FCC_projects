@@ -12,7 +12,17 @@
 // pass strings with special symbols, such as 2A3*3a2, 2A3 3a2, and 2_A3*3#A2.
 
 function palindrome(str) {
-  return true;
+  const removeChar = /[^a-z0-9]/ig;
+  const newStr = str.replace(removeChar, "").toLowerCase();
+  const arrayValues = newStr.split("");
+  const reverseArrayValues = arrayValues.reverse();
+  const reverseString = reverseArrayValues.join("");
+
+  if (newStr == reverseString) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-palindrome("eye");
+console.log(palindrome("Logan"));
