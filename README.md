@@ -1,5 +1,7 @@
 # FreeCodeCamp Caesars Cipher Project
 
+This is my soution to the [Caesars Cipher project](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/javascript-algorithms-and-data-structures-projects/caesars-cipher) on FreeCodeCamp. In it, I incorperated the use of RegEx and UTF-16 charecter codes to decode the string argument using the ROT-13 cipher.
+
 The instructions and guidelines are here:
 
 > Caesars Cipher
