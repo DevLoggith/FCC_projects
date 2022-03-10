@@ -15,13 +15,25 @@
 
 // ROT13 (rotate by 13) cipher. Letters are substituted for their corresponding 
 // partner when the alphabet is split into two equal rows.
-A | B | C | D | E | F | G | H | I | J | K | L | M |
-N | O | P | Q | R | S | T | U | V | W | X | Y | Z |
-
+// A | B | C | D | E | F | G | H | I | J | K | L | M |
+// ^UTF-16 = 65                                    ^UTF-16 = 77
+// N | O | P | Q | R | S | T | U | V | W | X | Y | Z |
+//                                                 ^UTF-16 = 90
 // ------------------------------------------------
 
 function rot13(str) {
-  return str;
+  let decodedStr = '';
+  for (let i = 0; i < str.length; i++) {
+    if (/[A-Z]/.test(str[i])) {
+      let code = str.charCodeAt(i) + 13;
+      while (code > 90) {
+        code = (code - 90) + 64;
+      }
+      decodedStr += String.fromCharCode(code);
+    } else {
+      decodedStr += str[i];
+      }
+  }
+  return decodedStr;
 }
-
-rot13("SERR PBQR PNZC");
+console.log(rot13("SERR CVMMN"));
