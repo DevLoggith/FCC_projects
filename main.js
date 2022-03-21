@@ -31,8 +31,9 @@
 // 4) 
 
 function telephoneCheck(str) {
-  const regEx = /^\"?1? ?\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})\"?$/;
-  return regEx.test(str);
+  const regEx1 = /^(1\s?)?(\d{3})[-\s]?(\d{3})[-\s]?(\d{4})$/;
+  const withBrackets = /^^(1\s?)?\((\d{3})\)[-\s]?(\d{3})[-\s]?(\d{4})$/
+  return regEx1.test(str) || withBrackets.test(str);
 }
 
-console.log(telephoneCheck("555-555-5555"));
+console.log(telephoneCheck("11278965472"));
