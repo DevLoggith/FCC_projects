@@ -1,6 +1,6 @@
 # FreeCodeCamp Palindrome Checker Project
 
-This is my solution to the first JavaScript Algorithms and Data Structures Projects from the FreeCodeCamp curriculum. The instructions and guidelines are here:
+This is my solution to the [first of the JavaScript Algorithms and Data Structures Projects](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/javascript-algorithms-and-data-structures-projects/palindrome-checker) from the FreeCodeCamp curriculum. The instructions and guidelines are here:
 
 > Return true if the given string is a palindrome. Otherwise, return false.
 > 
