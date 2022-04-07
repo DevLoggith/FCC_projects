@@ -28,7 +28,6 @@
 // 3) If separated by spaces or dashes, but be in this format:
 //   a) 1 *** *** ****
 //   b) Only area code can have surrounding brackets
-// 4) 
 
 function telephoneCheck(str) {
   const regEx1 = /^(1\s?)?(\d{3})[-\s]?(\d{3})[-\s]?(\d{4})$/;
