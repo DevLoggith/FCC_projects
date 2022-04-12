@@ -36,11 +36,11 @@ function checkCashRegister(price, cash, cid) {
   const changeDue = cash - price;
   // store change due in cents
   let changeDueCents = changeDue * 100;
-  // sum up all money in cash drawer
+  // sum up all cents in cash drawer
   const availInCents = cid.reduce((acc, billType) => {
     return acc + billType[1] * 100;
   }, 0)
-  // if cash in drawer === change due, return
+  // if cents in drawer === change due in cents, return
   // {status: "CLOSED", change: cid} with cid being the change key value
   if (availInCents === changeDueCents) {
     return {status: "CLOSED", change: cid};
@@ -68,10 +68,10 @@ function checkCashRegister(price, cash, cid) {
   const changeTotal = change.reduce((acc, [, amt]) => {
     return acc + amt;
   }, 0.00);
-  if (changeTotal < changeDue) {
+  if (changeDueCents > 0) {
     return {status: "INSUFFICIENT_FUNDS", change: []};
   }
-  return {status: "OPEN", change: change}
+  return {status: "OPEN", change}
 }
 
 checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05],
