@@ -19,21 +19,51 @@
 
 // ---------------------------------------------------------------------------
 
+const LOOKUP = {
+  PENNY: 1,
+  NICKLE: 5,
+  DIME: 10,
+  QUARTER: 25,
+  ONE: 100,
+  FIVE: 500,
+  TEN: 1000,
+  TWENTY: 2000,
+  'ONE HUNDRED': 10000
+}
+
 function checkCashRegister(price, cash, cid) {
   // store variable with amount of change due
   const changeDue = cash - price;
   // store change due in cents
-  const changeDueCents = changeDue * 100;
+  let changeDueCents = changeDue * 100;
   // sum up all money in cash drawer
-  const availInCents = cid.reduce((acc, type) => {
-    return acc + type[1] * 100;
+  const availInCents = cid.reduce((acc, billType) => {
+    return acc + billType[1] * 100;
   }, 0)
   // if cash in drawer === change due, return
   // {status: "CLOSED", change: cid} with cid being the change key value
   if (availInCents === changeDueCents) {
     return {status: "CLOSED", change: cid};
   }
-  
+  // reverse cid array, loop through with map, add up money needed for each bill
+  // type
+  const change = cid.reverse().map(([name, amount]) => {
+    let total = 0;
+    const nameValue = LOOKUP[name];
+    let amountCents = amount * 100;
+    // loop while change due is more than bill value, and amount of money for
+    // bill is enough
+    while(nameValue <= changeDueCents && amountCents > 0) {
+      // add one bills value to total
+      total += nameValue;
+      // subtract that nameValue from from change due
+      changeDueCents -= nameValue;
+      // subtract that nameValue from how much money of that billType is
+      // available
+      amountCents -= nameValue;
+    }
+    return [name, total / 100];
+  });
 }
 
 console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05],
