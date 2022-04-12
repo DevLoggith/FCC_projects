@@ -63,9 +63,17 @@ function checkCashRegister(price, cash, cid) {
       amountCents -= nameValue;
     }
     return [name, total / 100];
-  });
+  // filter out denominations === 0
+  }).filter(([, amt]) => amt > 0);
+  const changeTotal = change.reduce((acc, [, amt]) => {
+    return acc + amt;
+  }, 0.00);
+  if (changeTotal < changeDue) {
+    return {status: "INSUFFICIENT_FUNDS", change: []};
+  }
+  return {status: "OPEN", change: change}
 }
 
-console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05],
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05],
 ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20],
-["TWENTY", 60], ["ONE HUNDRED", 100]]));
+["TWENTY", 60], ["ONE HUNDRED", 100]]);
